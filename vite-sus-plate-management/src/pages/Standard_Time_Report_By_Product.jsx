@@ -420,40 +420,43 @@ export default function StandardTimeReportByProduct() {
               >
                 {/* Row 1 */}
                 <FormControl size="small" sx={{ minWidth: 300 }}>
-                  <InputLabel>Factory</InputLabel>
-                  <Select
-                    value={filters.factory}
-                    label="Factory"
-                    onChange={(e) => handleFilterChange('factory', e.target.value)}
-                  >
-                    {lists.factoryList.map((item, idx) => (
-                      <MenuItem key={idx} value={item.value}>{item.label}</MenuItem>
-                    ))}
-                  </Select>
+                  <Autocomplete
+                    size="small"
+                    options={lists.factoryList}
+                    getOptionLabel={option => option.label || ""}
+                    value={lists.factoryList.find(item => item.value === filters.factory) || null}
+                    onChange={(_, newValue) => handleFilterChange('factory', newValue ? newValue.value : "ALL")}
+                    renderInput={(params) => <TextField {...params} label="Factory" />}
+                    disableClearable
+                    isOptionEqualToValue={(option, value) => option.value === value.value}
+                    ListboxProps={{ style: { maxHeight: 300 } }}
+                  />
                 </FormControl>
                 <FormControl size="small" sx={{ minWidth: 300 }}>
-                  <InputLabel>Unit</InputLabel>
-                  <Select
-                    value={filters.unit}
-                    label="Unit"
-                    onChange={(e) => handleFilterChange('unit', e.target.value)}
-                  >
-                    {lists.unitList.map((item, idx) => (
-                      <MenuItem key={idx} value={item.value}>{item.label}</MenuItem>
-                    ))}
-                  </Select>
+                  <Autocomplete
+                    size="small"
+                    options={lists.unitList}
+                    getOptionLabel={option => option.label || ""}
+                    value={lists.unitList.find(item => item.value === filters.unit) || null}
+                    onChange={(_, newValue) => handleFilterChange('unit', newValue ? newValue.value : "ALL")}
+                    renderInput={(params) => <TextField {...params} label="Unit" />}
+                    disableClearable
+                    isOptionEqualToValue={(option, value) => option.value === value.value}
+                    ListboxProps={{ style: { maxHeight: 300 } }}
+                  />
                 </FormControl>
                 <FormControl size="small" sx={{ minWidth: 300 }}>
-                  <InputLabel>Group Process</InputLabel>
-                  <Select
-                    value={filters.groupProcess}
-                    label="Group Process"
-                    onChange={(e) => handleFilterChange('groupProcess', e.target.value)}
-                  >
-                    {lists.groupProcessList.map((item, idx) => (
-                      <MenuItem key={idx} value={item.value}>{item.label}</MenuItem>
-                    ))}
-                  </Select>
+                  <Autocomplete
+                    size="small"
+                    options={lists.groupProcessList}
+                    getOptionLabel={option => option.label || ""}
+                    value={lists.groupProcessList.find(item => item.value === filters.groupProcess) || null}
+                    onChange={(_, newValue) => handleFilterChange('groupProcess', newValue ? newValue.value : "ALL")}
+                    renderInput={(params) => <TextField {...params} label="Group Process" />}
+                    disableClearable
+                    isOptionEqualToValue={(option, value) => option.value === value.value}
+                    ListboxProps={{ style: { maxHeight: 300 } }}
+                  />
                 </FormControl>
                 {/* Row 2 */}
                 <FormControl size="small" sx={{ minWidth: 300 }}>
